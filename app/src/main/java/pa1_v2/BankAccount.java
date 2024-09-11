@@ -28,7 +28,7 @@ public class BankAccount {
      * @return The balance rounded to the nearest integer.
      */
     public double getBalance() {
-        
+        return Math.round(this.balance);
     }
 
     /**
@@ -36,7 +36,7 @@ public class BankAccount {
      * @return The account holder's name.
      */
     public String getAccountHolder() {
-        
+        return this.accountHolder;
     }
 
     /**
@@ -44,7 +44,7 @@ public class BankAccount {
      * @return The account number.
      */
     public int getAccountNumber() {
-        
+        return this.accountNumber;
     }
 
     /**
@@ -52,14 +52,16 @@ public class BankAccount {
      * @param amount The amount to deposit.
      */
     public void deposit(double amount) {
-        
+    	if (amount > 0){
+        this.balance += amount;
+    	}
     }
 
     /**
      * Apply interest to the account balance based on the interest rate.
      */
     public void applyInterest() {
-        
+    	this.balance *= 1 + this.interestRate;
     }
 
     /**
@@ -67,6 +69,8 @@ public class BankAccount {
      * @param amount The amount to withdraw.
      */
     public void withdraw(double amount) {
-
+    	if (this.balance >= amount && amount > 0){
+    		this.balance -= amount;
+    	}
     }
 }
